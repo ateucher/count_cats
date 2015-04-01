@@ -5,7 +5,7 @@ data <- read.csv("data.csv", stringsAsFactors = FALSE)
 data$region <- reorder(data$region, data$n_cats, max, order = TRUE)
 data$region <- factor(data$region, levels = rev(levels(data$region)))
 
-ann_text <- data.frame(site = "Elk Falls Dogwood", n_cats = 55.5,
+ann_text <- data.frame(site = "Duncan Cairnsmore", n_cats = 55.5,
                        region = factor("Georgia Strait",
                                         levels = levels(data$region)))
 

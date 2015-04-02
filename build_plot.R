@@ -1,6 +1,8 @@
+library(ggplot2)
 data <- read.csv("data.csv", stringsAsFactors = FALSE)
 
-ggplot(data, aes(x = n_cats, y = site)) + geom_point()
+ggplot(data, aes(x = n_cats, y = site)) +
+  geom_point()
 
 ## Order by n_cats:
 ggplot(data,
@@ -17,7 +19,8 @@ ggplot(data,
              labeller = label_wrap_gen(15))
 
 ## Make region an ordered factor so can order facets:
-data$region <- reorder(data$region, data$n_cats, max, order = TRUE)
+data$region <- reorder(data$region, data$n_cats,
+                       max, order = TRUE)
 data$region <- factor(data$region, levels = rev(levels(data$region)))
 
 ## And plot it:
@@ -29,6 +32,10 @@ ggplot(data,
              labeller = label_wrap_gen(15))
 
 ## There is a regulation on the maximum number of cats you can have:
+ann_text <- data.frame(site = "Duncan Cairnsmore", n_cats = 55.5,
+                       region = factor("Georgia Strait",
+                                       levels = levels(data$region)))
+
 ggplot(data,
        aes(x = n_cats,
            y = reorder(site, n_cats, sum))) +
